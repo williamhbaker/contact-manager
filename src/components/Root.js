@@ -1,14 +1,23 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import App from './App';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import AddContact from './AddContact';
+import AllContacts from './AllContacts';
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <Route exact path='/'>
-        <App />
-      </Route>
+      <Switch>
+        <Route exact path='/add'>
+          <AddContact />
+        </Route>
+        <Route exact path='/contacts'>
+          <AllContacts />
+        </Route>
+        <Route path='*'>
+          <Redirect to='/contacts' />
+        </Route>
+      </Switch>
     </Router>
   </Provider>
 );
