@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
+import ModalEdit from '../../modalEdit';
+
 const ContactCard = ({
   deleteContact,
   id,
@@ -27,12 +29,16 @@ const ContactCard = ({
       </div>
     </div>
     <footer className="card-footer">
-      <button className="card-footer-item button is-info is-light">
-        <span className="icon">
-          <FontAwesomeIcon icon={faEdit} />
-        </span>
-        <span>Edit</span>
-      </button>
+      <ModalEdit
+        contactInfo={{ id, firstName, lastName, email, phone }}
+      >
+        <button className="card-footer-item button is-info is-light">
+          <span className="icon">
+            <FontAwesomeIcon icon={faEdit} />
+          </span>
+          <span>Edit</span>
+        </button>
+      </ModalEdit>
       <button
         onClick={() => deleteContact(id)}
         className="card-footer-item button is-danger is-light"

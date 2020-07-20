@@ -1,20 +1,37 @@
 import React from 'react';
-import Form from './form';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { addContact } from '../actions';
+
 import Header from './wrappers/Header';
 import Section from'./wrappers/Section';
 import Container from'./wrappers/Container';
+import Form from './form';
 
-function AddContact() {
-  return (
-    <Section>
-      <Container>
-        <Header>
-          Add a New Contact
-        </Header>
-        <Form />
-      </Container>
-    </Section>
-  );
-}
+const AddContact = ({
+  handleAddContact,
+  history
+}) => (
+  <Section>
+    <Container>
+      <Header>
+        Add a New Contact
+      </Header>
+      <Form
+        onCancel={() => history.push('/')}
+        onSubmit={handleAddContact}
+      />
+    </Container>
+  </Section>
+);
 
-export default AddContact;
+const mapDispatchToProps = {
+  handleAddContact: addContact,
+};
+
+export default withRouter(connect(
+  null,
+  mapDispatchToProps
+)(AddContact));
+
