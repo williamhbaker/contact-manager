@@ -1,16 +1,11 @@
 const contact = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_CONTACT':
-      return {
-        id: action.id,
-        firstName: action.firstName,
-        lastName: action.lastName,
-        phone: action.phone,
-      };
+      return { ...action.data };
     case 'MODIFY_CONTACT':
       return {
         ...state,
-        ...action.newData,
+        ...action.data,
       };
     default:
       return state;
