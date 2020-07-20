@@ -7,7 +7,6 @@ const FormContainer = ({
   <form
     onSubmit={onSubmit}
     noValidate={true}
-    className='container'
   >
     {children}
   </form>
