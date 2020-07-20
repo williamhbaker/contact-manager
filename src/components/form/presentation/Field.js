@@ -13,7 +13,7 @@ const renderRightErrorIcon = () => {
 const renderLeftInputIcon = (icon) => { 
   return (
     <span className="icon is-small is-left">
-      <FontAwesomeIcon icon={faExclamationTriangle} />
+      {true && icon}
     </span>
   );
 };
@@ -43,7 +43,7 @@ const Field = ({
           onChange={onChange}
           onBlur={onBlur}
         />
-        {icon && renderLeftInputIcon()}
+        {icon && renderLeftInputIcon(icon)}
         {(validity && validity.error) && renderRightErrorIcon()}
       </div>
       <p className="help is-danger"></p>
