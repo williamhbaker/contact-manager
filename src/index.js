@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import configureStore from './configureStore';
 import Root from './components/Root';
 
-const store = configureStore();
+const store = configureStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   <React.StrictMode>

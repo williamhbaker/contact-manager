@@ -1,5 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
+import { connect } from 'react-redux';
+
+import { addContact } from '../../actions';
 
 import FieldList from './FieldList';
 import FormButtons from './presentation/FormButtons';
@@ -32,7 +35,10 @@ const populatedFormState = (data) => {
   })
 };
 
-const Form = ({ data }) => {
+const Form = ({ 
+  data,
+  addContact,
+}) => {
   const initialState = data ? populatedFormState(data) : blankFormState();
 
   const [fields, setFields] = useState(initialState);
@@ -84,7 +90,7 @@ const Form = ({ data }) => {
       return { ...newData, [nextField.name]: nextField.value };
     }, {});
 
-    console.log(fieldData);
+    addContact(fieldData);
     reset();
   };
 
@@ -108,4 +114,9 @@ const Form = ({ data }) => {
   );
 };
 
-export default Form;
+const mapDispatchToProps = { addContact }
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Form);

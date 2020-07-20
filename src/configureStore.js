@@ -3,12 +3,13 @@ import throttle from 'lodash/throttle';
 import contactsApp from './reducers/'; 
 import { loadState, saveState } from './localStorage';
 
-const configureStore = () => {
+const configureStore = (option) => {
   const persistedState = loadState();
 
   const store = createStore(
     contactsApp,
-    persistedState
+    persistedState,
+    option
   );
 
   store.subscribe(throttle(() => {

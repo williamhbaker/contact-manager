@@ -1,57 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import FluidGrid from './presentation/FluidGrid';
 import ContactCard from './presentation/ContactCard';
 
-import { v4 as uuidv4 } from 'uuid';
-
-const dummyData = [
-  {
-    id: uuidv4(),
-    firstName: 'asdf',
-    lastName: 'zxcv',
-    email: 'zxcv@qwer.com',
-    phone: '123412341234',
-  },
-  {
-    id: uuidv4(),
-    firstName: 'asdf',
-    lastName: 'zxcv',
-    email: 'zxcv@qwer.com',
-    phone: '123412341234',
-  },
-  {
-    id: uuidv4(),
-    firstName: 'asdf',
-    lastName: 'zxcv',
-    email: 'zxcv@qwer.com',
-    phone: '123412341234',
-  },
-  {
-    id: uuidv4(),
-    firstName: 'asdf',
-    lastName: 'zxcv',
-    email: 'zxcv@qwer.com',
-    phone: '123412341234',
-  },
-  {
-    id: uuidv4(),
-    firstName: 'asdf',
-    lastName: 'zxcv',
-    email: 'zxcv@qwer.com',
-    phone: '123412341234',
-  },
-];
-
-const ContactList = () => {
+const ContactList = ({
+  contacts
+}) => {
   return (
     <FluidGrid>
-      {dummyData.map(c => <ContactCard
-        key={c.id}
-        { ...c }
-      />)}
+      {contacts.map(contact => (
+        <ContactCard
+          key={contact.id}
+          { ...contact }
+        />
+      ))}
     </FluidGrid>
   );
 }
 
-export default ContactList;
+const mapStateToProps = (state) => {
+  return { contacts: state.contacts }
+}
+
+export default connect(
+  mapStateToProps
+)(ContactList);
