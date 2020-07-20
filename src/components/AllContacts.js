@@ -1,10 +1,20 @@
 import React from 'react';
-import Form from './form';
+import ContactList from './contactList';
+import Header from './wrappers/Header';
+import Section from'./wrappers/Section';
+import Container from'./wrappers/Container';
 
-function App() {
+function AllContacts() {
   return (
-    <Form />
+    <Section>
+      <Container>
+        <Header>
+          All Contacts
+        </Header>
+        <ContactList />
+      </Container>
+    </Section>
   );
 }
 
-export default App;
+export default AllContacts;
