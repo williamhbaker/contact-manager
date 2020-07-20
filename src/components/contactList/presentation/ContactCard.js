@@ -1,14 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { deleteContact } from '../../../actions';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 const ContactCard = ({
+  deleteContact,
   id,
   firstName,
   lastName,
   email,
-  phone, 
+  phone,
 }) => (
   <div className="card">
     <div className="card-content">
@@ -28,7 +33,10 @@ const ContactCard = ({
         </span>
         <span>Edit</span>
       </button>
-      <button className="card-footer-item button is-danger is-light">
+      <button
+        onClick={() => deleteContact(id)}
+        className="card-footer-item button is-danger is-light"
+      >
         <span className="icon">
           <FontAwesomeIcon icon={faTrash} />
         </span>
@@ -38,4 +46,9 @@ const ContactCard = ({
   </div>
 );
 
-export default ContactCard;
+const mapDispatchToProps = { deleteContact };
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ContactCard);
