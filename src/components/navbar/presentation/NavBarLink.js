@@ -5,11 +5,11 @@ const NavBarLink = ({
   path,
   icon,
   text,
-  navLinkClick,
+  onClick,
 }) => (
   <NavLink
     to={path}
-    onClick={navLinkClick}
+    onClick={onClick}
     className='navbar-item'
     activeClassName='is-active'
   >

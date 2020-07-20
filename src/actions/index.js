@@ -5,9 +5,10 @@ export const addContact = (newContactData) => ({
   data: { id: uuidv4(), ...newContactData, },
 });
 
-export const modifyContact = (modifiedContactData) => ({
+export const modifyContact = (id, modifiedContactData) => ({
   type: 'MODIFY_CONTACT',
-  data: { ...modifiedContactData, },
+  id,
+  data: { ...modifiedContactData },
 });
 
 export const deleteContact = (id) => ({
