@@ -6,22 +6,22 @@ import throttle from 'lodash/throttle';
 
 import 'sass/style.scss';
 
-import Root from 'components/Root';
-import contactsApp from 'reducers/'; 
 import { loadState, saveState } from 'localStorage';
+import Root from 'components/Root';
+import contactsReducer from './features/contacts/contactsSlice'; 
 
 const store = configureStore({
-  reducer: contactsApp,
+  reducer: contactsReducer,
   middleware: getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',
-  preloadedState: loadState()
+  // preloadedState: loadState()
 });
 
-store.subscribe(throttle(() => {
-  saveState({
-    contacts: store.getState().contacts, 
-  });
-}, 1000));
+// store.subscribe(throttle(() => {
+//   saveState({
+//     contacts: store.getState().contacts, 
+//   });
+// }, 1000));
 
 ReactDOM.render(
   <React.StrictMode>

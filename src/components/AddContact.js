@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { addContact } from '../actions';
+import { addContact } from 'features/contacts/contactsSlice';
 
 import Header from './wrappers/Header';
 import Section from'./wrappers/Section';
@@ -26,12 +26,12 @@ const AddContact = ({
   </Section>
 );
 
-const mapDispatchToProps = {
+const mapDispatch = {
   handleAddContact: addContact,
 };
 
 export default withRouter(connect(
   null,
-  mapDispatchToProps
+  mapDispatch
 )(AddContact));
 
