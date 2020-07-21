@@ -4,11 +4,11 @@ import * as serviceWorker from './serviceWorker';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import throttle from 'lodash/throttle';
 
-import './sass/style.scss';
+import 'sass/style.scss';
 
-import Root from './components/Root';
-import contactsApp from './reducers/'; 
-import { loadState, saveState } from './localStorage';
+import Root from 'components/Root';
+import contactsApp from 'reducers/'; 
+import { loadState, saveState } from 'localStorage';
 
 const store = configureStore({
   reducer: contactsApp,
