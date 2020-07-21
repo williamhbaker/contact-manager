@@ -10,7 +10,7 @@ const Modal = ({
 }) => (
   ReactDOM.createPortal(
     <div className="modal is-active">
-      <div className="modal-background"></div>
+      <div className="modal-background" onClick={onCancelClick}></div>
       <div className="modal-card" style={{maxWidth: '30rem'}}>
         <header className="modal-card-head">
           <p className="modal-card-title">{title}</p>
