@@ -6,7 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import ModalEdit from 'features/modalEditContact/ModalEdit';
-import { deleteContact } from './contactsSlice';
+import { deleteContact } from 'features/contactManager/contactManagerSlice';
 
 const ContactCard = ({ id, firstName, lastName, email, phone }) => {
   const dispatch = useDispatch();

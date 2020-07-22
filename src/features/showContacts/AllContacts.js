@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   fetchContacts,
-  makeSelectContacts,
   selectContactsIsFetching
-} from './contactsSlice';
+} from './showContactsSlice';
+
+import {
+  makeSelectContacts,
+} from 'features/contactManager/contactManagerSlice';
 
 import ContactCard from './ContactCard';
 import Header from 'components/Header';

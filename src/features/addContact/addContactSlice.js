@@ -5,7 +5,7 @@ import {
 
 import * as api from 'api';
 
-import { addToState } from 'features/showContacts/contactsSlice';
+import { addContact as addToState } from 'features/contactManager/contactManagerSlice';
 
 // thunks
 
