@@ -1,7 +1,4 @@
-import {
-  createSlice,
-  createSelector
-} from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 // slice
 
@@ -9,7 +6,7 @@ const contactManagerSlice = createSlice({
   name: 'contacts',
   initialState: {
     all: [],
-    isCurrent: false,
+    isCurrent: false
   },
   reducers: {
     receiveContacts(state, action) {
@@ -27,7 +24,7 @@ const contactManagerSlice = createSlice({
       );
       state.all.splice(idx, 1);
     },
-    modifyContact(state, action) {
+    updateContact(state, action) {
       const thisContact = state.all.find(
         contact => contact.id === action.payload.id
       );
@@ -39,7 +36,7 @@ const contactManagerSlice = createSlice({
 export const {
   addContact,
   deleteContact,
-  modifyContact,
+  updateContact,
   receiveContacts
 } = contactManagerSlice.actions;
 

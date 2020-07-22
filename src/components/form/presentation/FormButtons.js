@@ -1,9 +1,6 @@
 import React from 'react';
 
-const FormButtons = ({
-  onCancel,
-  inProgress
-}) => (
+const FormButtons = ({ onCancel, inProgress }) => (
   <div className="field is-grouped">
     <p className="control is-expanded">
       <button

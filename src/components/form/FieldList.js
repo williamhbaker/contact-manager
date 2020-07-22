@@ -1,12 +1,7 @@
 import React from 'react';
 import Field from './presentation/Field';
 
-const FieldList = ({
-  fields,
-  onChange,
-  onBlur,
-  inProgress
-}) => (
+const FieldList = ({ fields, onChange, onBlur, inProgress }) => (
   <>
     {fields.map(field => {
       return (

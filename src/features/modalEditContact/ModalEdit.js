@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { modifyContact } from './contactsSlice';
+import {
+  updateContact,
+  selectEditContactUpdating,
+  selectEditContactDone,
+  resetState
+} from './modalEditSlice';
 
 import ModalWrapper from 'components/ModalWrapper';
 import Form from 'components/form';
 
 const ModalEdit = ({ children, contactInfo }) => {
   const dispatch = useDispatch();
-  const handleEditSubmit = data =>
-    dispatch(
-      modifyContact({
-        id: contactInfo.id,
-        ...data
-      })
-    );
+  const isUpdating = useSelector(selectEditContactUpdating);
+  const isDone = useSelector(selectEditContactDone);
+
+  const handleEditSubmit = data => {
+    const newData = { id: contactInfo.id, ...data };
+    dispatch(updateContact(newData));
+  };
 
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   const openModal = () => setOpen(true);
+
+  useEffect(() => {
+    if (isDone && open) {
+      closeModal();
+      dispatch(resetState());
+    }
+  });
 
   return (
     <>
@@ -29,8 +41,9 @@ const ModalEdit = ({ children, contactInfo }) => {
         >
           <Form
             data={contactInfo}
-            onCancel={closeModal}
+            inProgress={isUpdating}
             onSubmit={handleEditSubmit}
+            onCancel={closeModal}
           />
         </ModalWrapper>
       )}

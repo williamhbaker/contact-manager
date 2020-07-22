@@ -1,7 +1,4 @@
-import {
-  createSlice,
-  createAsyncThunk
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from 'api';
 
@@ -28,10 +25,9 @@ const addContactSlice = createSlice({
   },
   reducers: {
     resetState(state, action) {
-      console.log('resetting');
       state.isAdding = false;
       state.isDone = false;
-    },
+    }
   },
   extraReducers: {
     [addContact.pending]: (state, action) => {
@@ -50,9 +46,7 @@ const addContactSlice = createSlice({
 
 export default addContactSlice.reducer;
 
-export const {
-  resetState,
-} = addContactSlice.actions;
+export const { resetState } = addContactSlice.actions;
 
 // selectors
 

@@ -23,13 +23,15 @@ const AddContact = () => {
   useEffect(() => {
     if (isDone) {
       dispatch(resetState());
-      history.push('/');
+      redirectAfterSubmit();
     }
   });
 
   const handleAddContact = formData => {
     dispatch(addContact(formData));
   };
+
+  const redirectAfterSubmit = () => history.push('/');
 
   return (
     <Section>
@@ -38,6 +40,7 @@ const AddContact = () => {
         <Form
           inProgress={isAdding}
           onSubmit={handleAddContact}
+          onCancel={redirectAfterSubmit}
         />
       </Container>
     </Section>

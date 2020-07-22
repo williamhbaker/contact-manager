@@ -32,11 +32,7 @@ const populatedFormState = data => {
   });
 };
 
-const Form = ({
-  data,
-  inProgress,
-  onSubmit
-}) => {
+const Form = ({ data, inProgress, onSubmit, onCancel }) => {
   const initialState = data ? populatedFormState(data) : blankFormState();
 
   const [fields, setFields] = useState(initialState);
@@ -93,11 +89,11 @@ const Form = ({
     }, {});
 
     onSubmit(fieldData);
-    handleFormCancel();
   };
 
   const handleFormCancel = () => {
     reset();
+    onCancel();
   };
 
   return (
@@ -108,10 +104,7 @@ const Form = ({
         onBlur={handleBlur}
         inProgress={inProgress}
       />
-      <FormButtons
-        onCancel={handleFormCancel}
-        inProgress={inProgress}
-      />
+      <FormButtons onCancel={handleFormCancel} inProgress={inProgress} />
     </FormContainer>
   );
 };

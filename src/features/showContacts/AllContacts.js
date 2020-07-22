@@ -1,14 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  fetchContacts,
-  selectContactsIsFetching
-} from './showContactsSlice';
+import { fetchContacts, selectContactsIsFetching } from './showContactsSlice';
 
-import {
-  makeSelectContacts,
-} from 'features/contactManager/contactManagerSlice';
+import { makeSelectContacts } from 'features/contactManager/contactManagerSlice';
 
 import ContactCard from './ContactCard';
 import Header from 'components/Header';
@@ -32,14 +27,15 @@ function AllContacts() {
     <Section>
       <Container>
         <Header>All Contacts</Header>
-        {isFetching ?
-          <InProgress /> :
+        {isFetching ? (
+          <InProgress />
+        ) : (
           <FluidGrid>
             {contacts.map(contact => (
               <ContactCard key={contact.id} {...contact} />
             ))}
           </FluidGrid>
-        }
+        )}
       </Container>
     </Section>
   );
