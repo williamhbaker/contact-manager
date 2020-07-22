@@ -11,7 +11,8 @@ const Field = ({
   onChange,
   onBlur,
   name,
-  value
+  value,
+  inProgress
 }) => {
   return (
     <div className="field">
@@ -25,6 +26,7 @@ const Field = ({
           type={inputType}
           onChange={onChange}
           onBlur={onBlur}
+          disabled={inProgress}
         />
         <span className="icon is-left">{icon}</span>
         <span className="icon is-right">

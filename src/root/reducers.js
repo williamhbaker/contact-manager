@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
-import contactsReducer from 'features/contacts/contactsSlice';
+import showContactsReducer from 'features/showContacts/showContactsSlice';
+import addContactsReducer from 'features/addContact/addContactSlice';
+import contactManagerReducer from 'features/contactManager/contactManagerSlice';
+import editContactReducer from 'features/modalEditContact/modalEditSlice.js';
+import deleteContactReducer from 'features/deleteContact/deleteContactSlice.js';
 
 export default combineReducers({
-  contacts: contactsReducer
+  contacts: contactManagerReducer,
+  addContact: addContactsReducer,
+  showContacts: showContactsReducer,
+  editContact: editContactReducer,
+  deleteContact: deleteContactReducer
 });
