@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import throttle from 'lodash/throttle';
+// import throttle from 'lodash/throttle';
 
 import 'sass/style.scss';
 
-import { loadState, saveState } from 'localStorage';
+// import { loadState, saveState } from 'localStorage';
 import Root from 'components/Root';
 import contactsReducer from './features/contacts/contactsSlice'; 
 

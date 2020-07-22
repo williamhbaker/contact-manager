@@ -1,8 +1,8 @@
 import React from 'react';
-import ContactList from './contactList';
-import Header from './wrappers/Header';
-import Section from'./wrappers/Section';
-import Container from'./wrappers/Container';
+import ContactList from './ContactList';
+import Header from 'components/Header';
+import Section from'components/Section';
+import Container from'components/Container';
 
 function AllContacts() {
   return (

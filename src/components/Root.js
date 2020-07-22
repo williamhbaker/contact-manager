@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import NavControl from './navbar';
-import AddContact from './AddContact';
-import AllContacts from './AllContacts';
+import AddContact from 'features/contacts/AddContact';
+import AllContacts from 'features/contacts/AllContacts';
 
 const Root = ({ store }) => (
   <Provider store={store}>

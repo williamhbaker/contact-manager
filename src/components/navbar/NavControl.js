@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 
-import NavBarLink from './presentation/NavBarLink';
-import NavBar from './presentation/NavBar';
+import NavBarLink from './NavBarLink';
+import NavBar from './NavBar';
 
 import paths from './paths';
 

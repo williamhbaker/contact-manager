@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { modifyContact } from '../../actions';
+import { modifyContact } from './contactsSlice';
 
-import ModalWrapper from './presentation/ModalWrapper';
-import Form from '../form';
+import ModalWrapper from 'components/ModalWrapper';
+import Form from 'components/form';
 
 const ModalEdit = ({
   children,
@@ -15,7 +15,7 @@ const ModalEdit = ({
 
   const closeModal = () => setOpen(false);
   const openModal = () => setOpen(true);
-  const handleEditSubmit = (data) => modifyContact(contactInfo.id, { ...data });
+  const handleEditSubmit = (data) => modifyContact({ id: contactInfo.id, ...data });
 
   return (
     <>
@@ -42,9 +42,9 @@ const ModalEdit = ({
   );
 };
 
-const mapDispatchToProps = { modifyContact };
+const mapDispatch = { modifyContact };
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatch
 )(ModalEdit);

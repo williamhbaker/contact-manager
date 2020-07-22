@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { deleteContact } from '../../../actions';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
-import ModalEdit from '../../modalEdit';
+import ModalEdit from './ModalEdit';
+import { deleteContact } from './contactsSlice';
 
 const ContactCard = ({
   deleteContact,
@@ -40,7 +39,7 @@ const ContactCard = ({
         </button>
       </ModalEdit>
       <button
-        onClick={() => deleteContact(id)}
+        onClick={() => deleteContact({ id })}
         className="card-footer-item button is-danger is-light"
       >
         <span className="icon">
@@ -52,9 +51,9 @@ const ContactCard = ({
   </div>
 );
 
-const mapDispatchToProps = { deleteContact };
+const mapDispatch = { deleteContact };
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatch
 )(ContactCard);

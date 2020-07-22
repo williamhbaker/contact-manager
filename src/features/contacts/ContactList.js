@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit'
 
-import FluidGrid from './presentation/FluidGrid';
-import ContactCard from './presentation/ContactCard';
+import FluidGrid from 'components/FluidGrid';
+import ContactCard from './ContactCard';
 
 const ContactList = ({
   contacts
