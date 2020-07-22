@@ -1,13 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit'
 
 import FluidGrid from 'components/FluidGrid';
 import ContactCard from './ContactCard';
 
-const ContactList = ({
-  contacts
-}) => {
+const getContacts = (state) => state.contacts;
+
+const selectContacts = createSelector(
+  [ getContacts ],
+  (contacts) => contacts,
+);
+
+const ContactList = () => {
+  const contacts = useSelector(selectContacts);
+
   return (
     <FluidGrid>
       {contacts.map(contact => (
@@ -20,19 +27,4 @@ const ContactList = ({
   );
 };
 
-const getContacts = (contacts) => contacts;
-
-const selectContacts = createSelector(
-  [ getContacts ],
-  (contacts) => {
-    return contacts;
-  }
-);
-
-const mapStateToProps = (state) => ({
-  contacts: selectContacts(state.contacts),
-});
-
-export default connect(
-  mapStateToProps
-)(ContactList);
+export default ContactList;
