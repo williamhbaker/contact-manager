@@ -20,7 +20,7 @@ const ContactList = ({
   );
 };
 
-const getContacts = (state) => state;
+const getContacts = (contacts) => contacts;
 
 const selectContacts = createSelector(
   [ getContacts ],
@@ -30,7 +30,7 @@ const selectContacts = createSelector(
 );
 
 const mapStateToProps = (state) => ({
-  contacts: selectContacts(state),
+  contacts: selectContacts(state.contacts),
 });
 
 export default connect(
