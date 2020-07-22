@@ -22,14 +22,6 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-export const addContact = createAsyncThunk(
-  'contacts/addContact',
-  async (data) => {
-    const result = await api.addContact(data);
-    return result;
-  }
-);
-
 // slice
 
 const contactsSlice = createSlice({
@@ -40,6 +32,11 @@ const contactsSlice = createSlice({
     isCurrent: false
   },
   reducers: {
+    addToState(state, action) {
+      if (state.isCurrent) {
+        state.all.push(action.payload);
+      }
+    },
     deleteContact(state, action) {
       const idx = state.all.findIndex(
         contact => contact.id === action.payload.id
@@ -64,17 +61,12 @@ const contactsSlice = createSlice({
     },
     [fetchContacts.rejected]: (state, action) => {
       console.log('fetch rejected');
-    },
-    [addContact.pending]: (state, action) => {
-      state.isCurrent = false;
-    },
-    [addContact.rejected]: (state, action) => {
-      console.log('add contact rejected');
     }
   }
 });
 
 export const {
+  addToState,
   deleteContact,
   modifyContact
 } = contactsSlice.actions;

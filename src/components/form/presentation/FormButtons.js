@@ -1,13 +1,18 @@
 import React from 'react';
 
-const FormButtons = ({ onCancel }) => (
+const FormButtons = ({
+  onCancel,
+  inProgress
+}) => (
   <div className="field is-grouped">
     <p className="control is-expanded">
-      <input
-        className="button is-primary"
+      <button
+        className={`button is-primary ${inProgress && 'is-loading'}`}
         style={{ width: '100%' }}
         type="submit"
-      />
+      >
+        Submit
+      </button>
     </p>
     <p className="control is-expanded">
       <button
@@ -15,6 +20,7 @@ const FormButtons = ({ onCancel }) => (
         className="button is-light"
         style={{ width: '100%' }}
         onClick={onCancel}
+        disabled={inProgress}
       >
         Cancel
       </button>
