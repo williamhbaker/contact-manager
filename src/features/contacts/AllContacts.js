@@ -29,12 +29,14 @@ function AllContacts() {
     <Section>
       <Container>
         <Header>All Contacts</Header>
-        <FluidGrid>
-          {contacts.map(contact => (
-            <ContactCard key={contact.id} {...contact} />
-          ))}
-        </FluidGrid>
-        {isFetching && <InProgress />}
+        {isFetching ?
+          <InProgress /> :
+          <FluidGrid>
+            {contacts.map(contact => (
+              <ContactCard key={contact.id} {...contact} />
+            ))}
+          </FluidGrid>
+        }
       </Container>
     </Section>
   );

@@ -11,7 +11,9 @@ import Form from 'components/form';
 
 const AddContact = () => {
   const dispatch = useDispatch();
-  const handleAddContact = formData => dispatch(addContact(formData));
+  const handleAddContact = formData => {
+    dispatch(addContact(formData));
+  };
 
   const history = useHistory();
 

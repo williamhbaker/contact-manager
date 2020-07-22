@@ -41,7 +41,7 @@ export const addContact = contactData => {
   console.log('server is adding contact');
   const data = { id: uuidv4(), ...contactData };
   return delay(2000).then(() => {
-    db.contacts.push(data);
+    db.contacts = [ ...db.contacts, data ];
     return data;
   });
 };

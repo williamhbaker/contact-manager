@@ -17,8 +17,16 @@ export const fetchContacts = createAsyncThunk(
   {
     condition: (_, { getState }) => {
       const state = getState();
-      return !(state.contacts.isFetching || state.contacts.hasFetched);
+      return !(state.contacts.isFetching || state.contacts.isCurrent);
     }
+  }
+);
+
+export const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async (data) => {
+    const result = await api.addContact(data);
+    return result;
   }
 );
 
@@ -29,12 +37,9 @@ const contactsSlice = createSlice({
   initialState: {
     all: [],
     isFetching: false,
-    hasFetched: false
+    isCurrent: false
   },
   reducers: {
-    addContact(state, action) {
-      state.all.push(action.payload);
-    },
     deleteContact(state, action) {
       const idx = state.all.findIndex(
         contact => contact.id === action.payload.id
@@ -53,18 +58,23 @@ const contactsSlice = createSlice({
       state.isFetching = true;
     },
     [fetchContacts.fulfilled]: (state, action) => {
-      state.all = action.payload;
       state.isFetching = false;
-      state.hasFetched = true;
+      state.isCurrent = true;
+      state.all = action.payload;
     },
     [fetchContacts.rejected]: (state, action) => {
       console.log('fetch rejected');
+    },
+    [addContact.pending]: (state, action) => {
+      state.isCurrent = false;
+    },
+    [addContact.rejected]: (state, action) => {
+      console.log('add contact rejected');
     }
   }
 });
 
 export const {
-  addContact,
   deleteContact,
   modifyContact
 } = contactsSlice.actions;
