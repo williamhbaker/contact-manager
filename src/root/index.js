@@ -7,11 +7,11 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import store from 'root/store';
+import store from './store';
 
 import NavControl from 'components/navbar';
-import AddContact from 'features/contacts/AddContact';
-import AllContacts from 'features/contacts/AllContacts';
+import AddContact from 'features/addContact/AddContact';
+import AllContacts from 'features/showContacts/AllContacts';
 
 const Root = () => (
   <Provider store={store}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { modifyContact } from 'features/contacts/contactsSlice';
+import { modifyContact } from './contactsSlice';
 
 import ModalWrapper from 'components/ModalWrapper';
 import Form from 'components/form';

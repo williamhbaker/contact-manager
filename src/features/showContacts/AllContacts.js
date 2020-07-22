@@ -5,9 +5,9 @@ import {
   fetchContacts,
   makeSelectContacts,
   selectContactsIsFetching
-} from 'features/contacts/contactsSlice';
+} from './contactsSlice';
 
-import ContactCard from 'features/contacts/ContactCard';
+import ContactCard from './ContactCard';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';

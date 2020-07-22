@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { addContact } from 'features/contacts/contactsSlice';
+import { addContact } from './contactsSlice';
 
 import Header from 'components/Header';
 import Section from 'components/Section';
