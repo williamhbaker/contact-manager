@@ -1,22 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavBarLink = ({
-  path,
-  icon,
-  text,
-  onClick,
-}) => (
+const NavBarLink = ({ path, icon, text, onClick }) => (
   <NavLink
     to={path}
     onClick={onClick}
-    className='navbar-item'
-    activeClassName='is-active'
+    className="navbar-item"
+    activeClassName="is-active"
   >
-
-    <span className="icon">
-      {icon}
-    </span>
+    <span className="icon">{icon}</span>
     <span>{text}</span>
   </NavLink>
 );

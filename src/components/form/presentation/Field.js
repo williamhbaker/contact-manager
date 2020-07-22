@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 const Field = ({
   label,
@@ -11,17 +11,12 @@ const Field = ({
   onChange,
   onBlur,
   name,
-  value,
+  value
 }) => {
-
   return (
     <div className="field">
-      <label className="label">
-        {label}
-      </label>
-      <div
-        className={`control has-icons-right ${icon && 'has-icons-left'}`}
-      >
+      <label className="label">{label}</label>
+      <div className={`control has-icons-right ${icon && 'has-icons-left'}`}>
         <input
           data-name={name}
           className={`input ${validity.error && 'is-danger'}`}
@@ -31,16 +26,12 @@ const Field = ({
           onChange={onChange}
           onBlur={onBlur}
         />
-        <span className="icon is-left">
-          {icon}
-        </span>
+        <span className="icon is-left">{icon}</span>
         <span className="icon is-right">
           {validity.error && <FontAwesomeIcon icon={faExclamationTriangle} />}
         </span>
       </div>
-      <p className="help is-danger">
-        {validity.errorMsg || <>&nbsp;</>}
-      </p>
+      <p className="help is-danger">{validity.errorMsg || <>&nbsp;</>}</p>
     </div>
   );
 };

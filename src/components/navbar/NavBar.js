@@ -1,15 +1,10 @@
 import React, { useEffect } from 'react';
 
-const NavBar = ({
-  children,
-  menuOpen,
-  onToggleClick,
-}) => {
-
+const NavBar = ({ children, menuOpen, onToggleClick }) => {
   useEffect(() => {
     document.body.classList.add('has-navbar-fixed-top');
   });
-  
+
   return (
     <nav className="navbar is-primary is-fixed-top">
       <div className="navbar-brand">
@@ -24,9 +19,7 @@ const NavBar = ({
       </div>
 
       <div className={`navbar-menu ${menuOpen && 'is-active'}`}>
-        <div className="navbar-start">
-          {children}
-        </div>
+        <div className="navbar-start">{children}</div>
       </div>
     </nav>
   );

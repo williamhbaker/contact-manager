@@ -4,7 +4,7 @@ export default {
 
     return {
       error: !validEmail,
-      errorMsg: validEmail ? '' : 'This email is not valid.',
+      errorMsg: validEmail ? '' : 'This email is not valid.'
     };
   },
 
@@ -13,7 +13,7 @@ export default {
 
     return {
       error: !validName,
-      errorMsg: validName ? '' : 'Enter a valid name.',
+      errorMsg: validName ? '' : 'Enter a valid name.'
     };
   },
 
@@ -22,17 +22,20 @@ export default {
 
     return {
       error: !validPassword,
-      errorMsg: validPassword ? '' : 'Password must be at least 8 characters long.',
+      errorMsg: validPassword
+        ? ''
+        : 'Password must be at least 8 characters long.'
     };
   },
 
   validPhoneNumber(input) {
     const strippedInput = input.replace(/\D/g, '');
-    const validPhoneNumber = strippedInput.length === 10 && !strippedInput.match(/\D/);
+    const validPhoneNumber =
+      strippedInput.length === 10 && !strippedInput.match(/\D/);
 
     return {
       error: !validPhoneNumber,
-      errorMsg: validPhoneNumber ? '' : 'Please enter a valid phone number.',
+      errorMsg: validPhoneNumber ? '' : 'Please enter a valid phone number.'
     };
-  },
+  }
 };

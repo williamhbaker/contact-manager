@@ -1,39 +1,39 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import ModalEdit from './ModalEdit';
 import { deleteContact } from './contactsSlice';
 
-const ContactCard = ({
-  id,
-  firstName,
-  lastName,
-  email,
-  phone,
-}) => {
+const ContactCard = ({ id, firstName, lastName, email, phone }) => {
   const dispatch = useDispatch();
-  const handleDeleteClick = (id) => dispatch(deleteContact({ id }));
+  const handleDeleteClick = id => dispatch(deleteContact({ id }));
 
   return (
     <div className="card">
       <div className="card-content">
         <div className="content">
           <ul>
-            <li><strong>First Name:</strong> {firstName}</li>
-            <li><strong>Last Name:</strong> {lastName}</li>
-            <li><strong>Email:</strong> {email}</li>
-            <li><strong>Phone:</strong> {phone}</li>
+            <li>
+              <strong>First Name:</strong> {firstName}
+            </li>
+            <li>
+              <strong>Last Name:</strong> {lastName}
+            </li>
+            <li>
+              <strong>Email:</strong> {email}
+            </li>
+            <li>
+              <strong>Phone:</strong> {phone}
+            </li>
           </ul>
         </div>
       </div>
       <footer className="card-footer">
-        <ModalEdit
-          contactInfo={{ id, firstName, lastName, email, phone }}
-        >
+        <ModalEdit contactInfo={{ id, firstName, lastName, email, phone }}>
           <button className="card-footer-item button is-info is-light">
             <span className="icon">
               <FontAwesomeIcon icon={faEdit} />

@@ -1,6 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 
 import store from 'root/store';
 
@@ -14,14 +19,14 @@ const Root = () => (
       <NavControl />
 
       <Switch>
-        <Route exact path='/add'>
+        <Route exact path="/add">
           <AddContact />
         </Route>
-        <Route exact path='/contacts'>
+        <Route exact path="/contacts">
           <AllContacts />
         </Route>
-        <Route path='*'>
-          <Redirect to='/contacts' />
+        <Route path="*">
+          <Redirect to="/contacts" />
         </Route>
       </Switch>
     </Router>

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 
 import NavBarLink from './NavBarLink';
 import NavBar from './NavBar';
@@ -23,11 +23,7 @@ const NavControl = () => {
       onCloseClick={closeMenu}
     >
       {paths.map(path => (
-        <NavBarLink
-          key={path.path}
-          onClick={closeMenu}
-          {...path}
-        />
+        <NavBarLink key={path.path} onClick={closeMenu} {...path} />
       ))}
     </NavBar>
   );

@@ -3,10 +3,10 @@ import React from 'react';
 import validators from './validators';
 import formatters from './formatters';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 
 export default [
   {
@@ -15,7 +15,7 @@ export default [
     inputType: 'text',
     label: 'First Name',
     icon: <FontAwesomeIcon icon={faUser} />,
-    validator: validators.validName,
+    validator: validators.validName
   },
   {
     name: 'lastName',
@@ -23,7 +23,7 @@ export default [
     inputType: 'text',
     label: 'Last Name',
     icon: <FontAwesomeIcon icon={faUser} />,
-    validator: validators.validName,
+    validator: validators.validName
   },
   {
     name: 'email',
@@ -31,7 +31,7 @@ export default [
     inputType: 'email',
     label: 'Email',
     icon: <FontAwesomeIcon icon={faEnvelope} />,
-    validator: validators.validEmail,
+    validator: validators.validEmail
   },
   {
     name: 'phone',
@@ -40,6 +40,6 @@ export default [
     label: 'Phone Number',
     icon: <FontAwesomeIcon icon={faPhone} />,
     validator: validators.validPhoneNumber,
-    formatter: formatters.formattedPhoneNumber,
-  },
+    formatter: formatters.formattedPhoneNumber
+  }
 ];
