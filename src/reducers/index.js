@@ -1,9 +1,6 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import contactsReducer from 'features/contacts/contactsSlice'
 
-import contacts from './contacts';
-
-const contactsApp = combineReducers({
-  contacts,
+export default combineReducers({
+  contacts: contactsReducer,
 });
-
-export default contactsApp;

@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { addContact } from '../actions';
+import { addContact } from 'features/contacts/contactsSlice';
 
-import Header from './wrappers/Header';
-import Section from'./wrappers/Section';
-import Container from'./wrappers/Container';
-import Form from './form';
+import Header from 'components/Header';
+import Section from'components/Section';
+import Container from'components/Container';
+import Form from 'components/form';
 
 const AddContact = ({
   handleAddContact,
@@ -26,12 +26,12 @@ const AddContact = ({
   </Section>
 );
 
-const mapDispatchToProps = {
+const mapDispatch = {
   handleAddContact: addContact,
 };
 
 export default withRouter(connect(
   null,
-  mapDispatchToProps
+  mapDispatch
 )(AddContact));
 

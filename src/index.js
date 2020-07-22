@@ -1,11 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './sass/style.scss';
 import * as serviceWorker from './serviceWorker';
-import configureStore from './configureStore';
-import Root from './components/Root';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+// import throttle from 'lodash/throttle';
 
-const store = configureStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+import 'sass/style.scss';
+
+// import { loadState, saveState } from 'localStorage';
+import Root from 'components/Root';
+import rootReducer from 'reducers'; 
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware(),
+  devTools: process.env.NODE_ENV !== 'production',
+  // preloadedState: loadState()
+});
+
+// store.subscribe(throttle(() => {
+//   saveState({
+//     contacts: store.getState().contacts, 
+//   });
+// }, 1000));
 
 ReactDOM.render(
   <React.StrictMode>
