@@ -1,20 +1,48 @@
-import React from 'react';
-import ContactList from './ContactList';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  fetchContacts,
+  makeSelectContacts,
+  selectContactsIsFetching
+} from 'features/contacts/contactsSlice';
+
+import ContactCard from 'features/contacts/ContactCard';
 import Header from 'components/Header';
 import Section from'components/Section';
 import Container from'components/Container';
+import FluidGrid from 'components/FluidGrid';
+import InProgress from 'components/InProgress';
+
+const selectContacts = makeSelectContacts();
 
 function AllContacts() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const isFetching = useSelector(selectContactsIsFetching);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  });
+
   return (
     <Section>
       <Container>
         <Header>
           All Contacts
         </Header>
-        <ContactList />
+        <FluidGrid>
+          {contacts.map(contact => (
+            <ContactCard
+              key={contact.id}
+              { ...contact }
+            />
+          ))}
+        </FluidGrid>
+        {isFetching && <InProgress />}
       </Container>
     </Section>
   );
-}
+};
 
 export default AllContacts;
