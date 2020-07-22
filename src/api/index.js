@@ -59,3 +59,15 @@ export const updateContact = contactData => {
     return data;
   });
 };
+
+export const deleteContact = contactData => {
+  console.log('server is deleting contact');
+  const idx = db.contacts.findIndex(c => c.id === contactData.id);
+  return delay(2000).then(() => {
+    db.contacts = [
+      ...db.contacts.slice(0, idx),
+      ...db.contacts.slice(idx + 1)
+    ];
+    return contactData;
+  });
+};
