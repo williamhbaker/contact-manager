@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Heading = (props) => (
+const Heading = props => (
   <header>
-    <h1 className='title mb-5'>{props.children}</h1>
+    <h1 className="title mb-5">{props.children}</h1>
   </header>
 );
 

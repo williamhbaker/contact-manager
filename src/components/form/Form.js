@@ -5,7 +5,7 @@ import FieldList from './FieldList';
 import FormButtons from './presentation/FormButtons';
 import FormContainer from './presentation/FormContainer';
 
-import contactDefinition from  './contactDefinition';
+import contactDefinition from './contactDefinition';
 
 const getFieldByName = (fields, name) => {
   const thisField = fields.find(f => f.name === name);
@@ -18,25 +18,21 @@ const blankFormState = () => {
       ...field,
       value: '',
       validity: {},
-      needsValidated: false,
-    }
+      needsValidated: false
+    };
   });
 };
 
-const populatedFormState = (data) => {
+const populatedFormState = data => {
   return blankFormState().map(field => {
     return {
       ...field,
-      value: data[field.name],
+      value: data[field.name]
     };
-  })
+  });
 };
 
-const Form = ({ 
-  data,
-  onCancel,
-  onSubmit,
-}) => {
+const Form = ({ data, onCancel, onSubmit }) => {
   const initialState = data ? populatedFormState(data) : blankFormState();
 
   const [fields, setFields] = useState(initialState);
@@ -46,41 +42,45 @@ const Form = ({
   };
 
   const updateFieldState = (name, newData) => {
-    setFields(fields.map(f => f.name === name ? { ...f, ...newData } : f));
+    setFields(fields.map(f => (f.name === name ? { ...f, ...newData } : f)));
   };
 
-  const handleInputChange = (event) => {
-    const thisName = event.target.dataset.name
+  const handleInputChange = event => {
+    const thisName = event.target.dataset.name;
     const thisField = getFieldByName(fields, thisName);
 
     let newVal = event.target.value;
     if (thisField.formatter && newVal.length > thisField.value.length) {
-      newVal = thisField.formatter(event.target.value)
+      newVal = thisField.formatter(event.target.value);
     }
 
-    const validity = thisField.validity.error ? thisField.validator(newVal) : thisField.validity;
+    const validity = thisField.validity.error
+      ? thisField.validator(newVal)
+      : thisField.validity;
 
     updateFieldState(thisName, { value: newVal, validity });
   };
 
-  const handleBlur = (event) => {
-    const thisName = event.target.dataset.name
+  const handleBlur = event => {
+    const thisName = event.target.dataset.name;
     const thisField = getFieldByName(fields, thisName);
 
-    updateFieldState(thisName, { validity: thisField.validator(thisField.value) });
+    updateFieldState(thisName, {
+      validity: thisField.validator(thisField.value)
+    });
   };
 
   const validateAllFields = () => {
     const newFields = fields.map(field => ({
       ...field,
-      validity: field.validator(field.value),
+      validity: field.validator(field.value)
     }));
 
     setFields(newFields);
     return newFields.some(field => field.validity.error);
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = event => {
     event.preventDefault();
     if (validateAllFields()) return;
 
@@ -98,17 +98,13 @@ const Form = ({
   };
 
   return (
-    <FormContainer
-      onSubmit={handleFormSubmit}
-    >
+    <FormContainer onSubmit={handleFormSubmit}>
       <FieldList
         fields={fields}
         onChange={handleInputChange}
         onBlur={handleBlur}
       />
-      <FormButtons
-        onCancel={handleFormCancel}
-      />
+      <FormButtons onCancel={handleFormCancel} />
     </FormContainer>
   );
 };

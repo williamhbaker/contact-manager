@@ -9,8 +9,8 @@ import {
 
 import ContactCard from 'features/contacts/ContactCard';
 import Header from 'components/Header';
-import Section from'components/Section';
-import Container from'components/Container';
+import Section from 'components/Section';
+import Container from 'components/Container';
 import FluidGrid from 'components/FluidGrid';
 import InProgress from 'components/InProgress';
 
@@ -28,21 +28,16 @@ function AllContacts() {
   return (
     <Section>
       <Container>
-        <Header>
-          All Contacts
-        </Header>
+        <Header>All Contacts</Header>
         <FluidGrid>
           {contacts.map(contact => (
-            <ContactCard
-              key={contact.id}
-              { ...contact }
-            />
+            <ContactCard key={contact.id} {...contact} />
           ))}
         </FluidGrid>
         {isFetching && <InProgress />}
       </Container>
     </Section>
   );
-};
+}
 
 export default AllContacts;

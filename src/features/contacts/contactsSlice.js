@@ -1,5 +1,8 @@
-import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
+import {
+  createSlice,
+  createSelector,
+  createAsyncThunk
+} from '@reduxjs/toolkit';
 
 import * as api from 'api';
 
@@ -26,28 +29,24 @@ const contactsSlice = createSlice({
   initialState: {
     all: [],
     isFetching: false,
-    hasFetched: false,
+    hasFetched: false
   },
   reducers: {
-    testThing(state, action) {
-      console.log(action.payload);
-    },
-    addContact: {
-      reducer(state, action) {
-        state.all.push(action.payload);
-      },
-      prepare(data) {
-        return { payload: { id: uuidv4(), ...data } };
-      },
+    addContact(state, action) {
+      state.all.push(action.payload);
     },
     deleteContact(state, action) {
-      const idx = state.all.findIndex(contact => contact.id === action.payload.id);
+      const idx = state.all.findIndex(
+        contact => contact.id === action.payload.id
+      );
       state.all.splice(idx, 1);
     },
     modifyContact(state, action) {
-      const thisContact = state.all.find(contact => contact.id === action.payload.id);
+      const thisContact = state.all.find(
+        contact => contact.id === action.payload.id
+      );
       Object.assign(thisContact, action.payload);
-    },
+    }
   },
   extraReducers: {
     [fetchContacts.pending]: (state, action) => {
@@ -60,14 +59,14 @@ const contactsSlice = createSlice({
     },
     [fetchContacts.rejected]: (state, action) => {
       console.log('fetch rejected');
-    },
-  },
+    }
+  }
 });
 
 export const {
   addContact,
   deleteContact,
-  modifyContact,
+  modifyContact
 } = contactsSlice.actions;
 
 export default contactsSlice.reducer;
@@ -75,12 +74,9 @@ export default contactsSlice.reducer;
 // selectors
 
 export const makeSelectContacts = () => {
-  const getContacts = (state) => state.contacts.all;
+  const getContacts = state => state.contacts.all;
 
-  return createSelector(
-    [ getContacts ],
-    (contacts) => contacts,
-  );
+  return createSelector([getContacts], contacts => contacts);
 };
 
-export const selectContactsIsFetching = (state) => state.contacts.isFetching;
+export const selectContactsIsFetching = state => state.contacts.isFetching;
