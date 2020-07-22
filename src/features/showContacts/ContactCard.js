@@ -30,9 +30,7 @@ const ContactCard = ({ id, firstName, lastName, email, phone }) => {
       </div>
       <footer className="card-footer">
         <ModalEdit contactInfo={{ id, firstName, lastName, email, phone }}>
-          <button
-            className="card-footer-item button is-info is-light"
-          >
+          <button className="card-footer-item button is-info is-light">
             <span className="icon">
               <FontAwesomeIcon icon={faEdit} />
             </span>
