@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchContacts, selectContactsIsFetching } from './showContactsSlice';
-
-import { makeSelectContacts } from 'features/contactManager/contactManagerSlice';
+import {
+  fetchContacts,
+  selectAll,
+  selectFetchInProgress,
+} from 'features/contactManager/contactManagerSlice';
 
 import ContactCard from './ContactCard';
 import Header from 'components/Header';
@@ -12,12 +14,10 @@ import Container from 'components/Container';
 import FluidGrid from 'components/FluidGrid';
 import InProgress from 'components/InProgress';
 
-const selectContacts = makeSelectContacts();
-
 function AllContacts() {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const isFetching = useSelector(selectContactsIsFetching);
+  const contacts = useSelector(selectAll);
+  const isFetching = useSelector(selectFetchInProgress);
 
   useEffect(() => {
     dispatch(fetchContacts());

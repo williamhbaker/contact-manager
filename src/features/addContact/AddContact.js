@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import {
-  selectAddContactAdding,
-  selectAddContactDone,
-  addContact,
-  resetState
-} from './addContactSlice';
+  postContact,
+  selectAddOrUpdateInProgress
+} from 'features/contactManager/contactManagerSlice.js';
 
 import Header from 'components/Header';
 import Section from 'components/Section';
@@ -17,18 +15,19 @@ import Form from 'components/form';
 const AddContact = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const isAdding = useSelector(selectAddContactAdding);
-  const isDone = useSelector(selectAddContactDone);
+  const [submitted, setSubmitted] = useState(false);
+
+  const isAdding = useSelector(selectAddOrUpdateInProgress);
 
   useEffect(() => {
-    if (isDone) {
-      dispatch(resetState());
+    if (submitted && !isAdding) {
       redirectAfterSubmit();
     }
   });
 
   const handleAddContact = formData => {
-    dispatch(addContact(formData));
+    dispatch(postContact(formData));
+    setSubmitted(true);
   };
 
   const redirectAfterSubmit = () => history.push('/');
