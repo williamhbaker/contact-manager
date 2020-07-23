@@ -5,7 +5,7 @@ import {
   fetchContacts,
   selectAll,
   selectFetchInProgress
-} from 'features/contactManager/contactManagerSlice';
+} from './contactManagerSlice';
 
 import ContactCard from './ContactCard';
 import Header from 'components/Header';

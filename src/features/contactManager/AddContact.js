@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import {
   postContact,
   selectAddOrUpdateInProgress
-} from 'features/contactManager/contactManagerSlice.js';
+} from './contactManagerSlice.js';
 
 import Header from 'components/Header';
 import Section from 'components/Section';

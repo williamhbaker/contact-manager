@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
-import ModalEdit from 'features/modalEditContact/ModalEdit';
-import DeleteContact from 'features/deleteContact/DeleteContact';
+import ModalEdit from './ModalEdit';
+import DeleteContact from './DeleteContact';
 
 const ContactCard = ({ id, firstName, lastName, email, phone }) => {
   return (

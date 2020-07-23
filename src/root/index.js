@@ -10,8 +10,8 @@ import {
 import store from './store';
 
 import NavControl from 'components/navbar';
-import AddContact from 'features/addContact/AddContact';
-import AllContacts from 'features/showContacts/AllContacts';
+import AddContact from 'features/contactManager/AddContact';
+import AllContacts from 'features/contactManager/AllContacts';
 
 const Root = () => (
   <Provider store={store}>

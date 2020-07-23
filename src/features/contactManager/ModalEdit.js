@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   putContact,
   selectAddOrUpdateInProgress
-} from 'features/contactManager/contactManagerSlice';
+} from './contactManagerSlice';
 
 import ModalWrapper from 'components/ModalWrapper';
 import EditButton from './EditButton';

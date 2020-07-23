@@ -32,6 +32,10 @@ const db = {
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+export const replaceAllContactsNow = newData => {
+  db.contacts = newData;
+};
+
 export const fetchContacts = () => {
   console.log('server is fetching contacts');
   return delay(delayTime).then(() => {

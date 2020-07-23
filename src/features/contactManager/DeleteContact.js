@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   deleteContact,
   makeSelectCurrentlyDeleting
-} from 'features/contactManager/contactManagerSlice';
+} from './contactManagerSlice';
 
 import DeleteButton from './DeleteButton';
 
