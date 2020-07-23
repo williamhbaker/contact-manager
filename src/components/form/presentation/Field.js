@@ -20,7 +20,7 @@ const Field = ({
       <div className={`control has-icons-right ${icon && 'has-icons-left'}`}>
         <input
           data-name={name}
-          className={`input ${validity.error && 'is-danger'}`}
+          className={`input ${validity && validity.error && 'is-danger'}`}
           value={value}
           placeholder={placeHolder}
           type={inputType}
@@ -30,10 +30,14 @@ const Field = ({
         />
         <span className="icon is-left">{icon}</span>
         <span className="icon is-right">
-          {validity.error && <FontAwesomeIcon icon={faExclamationTriangle} />}
+          {validity && validity.error && (
+            <FontAwesomeIcon icon={faExclamationTriangle} />
+          )}
         </span>
       </div>
-      <p className="help is-danger">{validity.errorMsg || <>&nbsp;</>}</p>
+      <p className="help is-danger">
+        {(validity && validity.errorMsg) || <>&nbsp;</>}
+      </p>
     </div>
   );
 };

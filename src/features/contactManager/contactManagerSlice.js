@@ -85,7 +85,10 @@ const contactManagerSlice = createSlice({
     receiveContacts: contactsAdapter.setAll,
     addContact: contactsAdapter.addOne,
     removeContact: contactsAdapter.removeOne,
-    updateContact: contactsAdapter.updateOne
+    updateContact: contactsAdapter.updateOne,
+    resetInitialLoadState: state => {
+      state.initialLoadComplete = false;
+    }
   },
   extraReducers: {
     [fetchContacts.pending]: (state, action) => {
@@ -137,6 +140,8 @@ const {
   removeContact,
   updateContact
 } = contactManagerSlice.actions;
+
+export const { resetInitialLoadState } = contactManagerSlice.actions;
 
 export default contactManagerSlice.reducer;
 

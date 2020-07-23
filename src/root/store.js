@@ -7,7 +7,7 @@ import { replaceAllContactsNow } from 'api';
 
 const savedState = loadState();
 
-if (savedState) {
+if (savedState && savedState.contacts) {
   const entities = savedState.contacts.entities;
   replaceAllContactsNow(Object.values(entities));
 }

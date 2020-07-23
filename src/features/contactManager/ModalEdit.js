@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  putContact,
-  selectAddOrUpdateInProgress
-} from './contactManagerSlice';
+import { putContact, selectAddOrUpdateInProgress } from './contactManagerSlice';
 
 import ModalWrapper from 'components/ModalWrapper';
 import EditButton from './EditButton';
