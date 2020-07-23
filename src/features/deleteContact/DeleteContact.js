@@ -6,6 +6,8 @@ import {
   makeSelectCurrentlyDeleting
 } from 'features/contactManager/contactManagerSlice';
 
+import DeleteButton from './DeleteButton'
+
 const DeleteContact = ({ children, contactInfo }) => {
   const dispatch = useDispatch();
 
@@ -21,13 +23,12 @@ const DeleteContact = ({ children, contactInfo }) => {
   };
 
   return (
-    <button
-      className={`card-footer-item button is-danger is-light ${isDeleting &&
-        'is-loading'}`}
+    <DeleteButton
+      isDeleting={isDeleting}
       onClick={() => handleDeleteClick(contactInfo.id)}
     >
       {children}
-    </button>
+    </DeleteButton>
   );
 };
 
