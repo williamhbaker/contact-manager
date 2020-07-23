@@ -12,6 +12,7 @@ import store from './store';
 import NavControl from 'components/navbar';
 import AddContact from 'features/contactManager/AddContact';
 import AllContacts from 'features/contactManager/AllContacts';
+import Settings from 'features/settings/Settings';
 
 const Root = () => (
   <Provider store={store}>
@@ -19,6 +20,9 @@ const Root = () => (
       <NavControl />
 
       <Switch>
+        <Route exact path="/settings">
+          <Settings />
+        </Route>
         <Route exact path="/add">
           <AddContact />
         </Route>

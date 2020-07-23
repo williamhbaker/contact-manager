@@ -5,6 +5,8 @@ const NavBar = ({ children, menuOpen, onToggleClick }) => {
     document.body.classList.add('has-navbar-fixed-top');
   });
 
+  const links = React.Children.toArray(children);
+
   return (
     <nav className="navbar is-primary is-fixed-top">
       <div className="navbar-brand">
@@ -19,7 +21,8 @@ const NavBar = ({ children, menuOpen, onToggleClick }) => {
       </div>
 
       <div className={`navbar-menu ${menuOpen && 'is-active'}`}>
-        <div className="navbar-start">{children}</div>
+        <div className="navbar-start">{links.slice(1)}</div>
+        <div className="navbar-end">{links[0]}</div>
       </div>
     </nav>
   );
