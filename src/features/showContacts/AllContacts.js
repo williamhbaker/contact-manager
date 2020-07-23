@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchContacts,
   selectAll,
-  selectFetchInProgress,
+  selectFetchInProgress
 } from 'features/contactManager/contactManagerSlice';
 
 import ContactCard from './ContactCard';

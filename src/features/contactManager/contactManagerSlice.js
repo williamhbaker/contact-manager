@@ -3,7 +3,7 @@ import {
   createSelector,
   createEntityAdapter,
   createAsyncThunk
-} from '@reduxjs/toolkit'; 
+} from '@reduxjs/toolkit';
 
 import * as api from 'api';
 
@@ -19,7 +19,10 @@ export const fetchContacts = createAsyncThunk(
   {
     condition: (_, { getState }) => {
       const state = getState();
-      return !(state.contacts.addOrUpdateInProgress || state.contacts.initialLoadComplete);
+      return !(
+        state.contacts.addOrUpdateInProgress ||
+        state.contacts.initialLoadComplete
+      );
     }
   }
 );
@@ -34,7 +37,7 @@ export const postContact = createAsyncThunk(
   {
     condition: (_, { getState }) => {
       const state = getState();
-      return !(state.contacts.addOrUpdateInProgress);
+      return !state.contacts.addOrUpdateInProgress;
     }
   }
 );
@@ -52,10 +55,13 @@ export const putContact = createAsyncThunk(
   'contacts/putContact',
   async (data, { dispatch }) => {
     const result = await api.updateContact(data);
-    if (result) dispatch(updateContact({
-      id: result.id,
-      changes: result,
-    }));
+    if (result)
+      dispatch(
+        updateContact({
+          id: result.id,
+          changes: result
+        })
+      );
     return result;
   }
 );
@@ -64,7 +70,7 @@ export const putContact = createAsyncThunk(
 
 const contactsAdapter = createEntityAdapter({
   selectId: contact => contact.id,
-  sortComparer: (a, b) => a.firstName.localeCompare(b.firstName),
+  sortComparer: (a, b) => a.firstName.localeCompare(b.firstName)
 });
 
 const contactManagerSlice = createSlice({
@@ -73,13 +79,13 @@ const contactManagerSlice = createSlice({
     initialLoadComplete: false,
     addOrUpdateInProgress: false,
     fetchInProgress: false,
-    currentlyDeletingItems: [],
+    currentlyDeletingItems: []
   }),
   reducers: {
     receiveContacts: contactsAdapter.setAll,
     addContact: contactsAdapter.addOne,
     removeContact: contactsAdapter.removeOne,
-    updateContact: contactsAdapter.updateOne,
+    updateContact: contactsAdapter.updateOne
   },
   extraReducers: {
     [fetchContacts.pending]: (state, action) => {
@@ -105,7 +111,9 @@ const contactManagerSlice = createSlice({
       state.currentlyDeletingItems.push(action.meta.arg);
     },
     [deleteContact.fulfilled]: (state, action) => {
-      const idx = state.currentlyDeletingItems.findIndex(i => i === action.meta.arg);
+      const idx = state.currentlyDeletingItems.findIndex(
+        i => i === action.meta.arg
+      );
       state.currentlyDeletingItems.splice(idx, 1);
     },
     [deleteContact.rejected]: (state, action) => {
@@ -127,33 +135,29 @@ const {
   receiveContacts,
   addContact,
   removeContact,
-  updateContact,
+  updateContact
 } = contactManagerSlice.actions;
 
 export default contactManagerSlice.reducer;
 
 // selectors
 
-export const {
-  selectAll,
-  selectById
-} = contactsAdapter.getSelectors(state => state.contacts);
+export const { selectAll, selectById } = contactsAdapter.getSelectors(
+  state => state.contacts
+);
 
-export const selectInitialLoadComplete = state => 
+export const selectInitialLoadComplete = state =>
   state.contacts.initialLoadComplete;
 
-export const selectAddOrUpdateInProgress = state => 
+export const selectAddOrUpdateInProgress = state =>
   state.contacts.addOrUpdateInProgress;
 
-export const selectFetchInProgress = state => 
-  state.contacts.fetchInProgress;
+export const selectFetchInProgress = state => state.contacts.fetchInProgress;
 
 const currentlyDeletingSelector = (state, id) => {
   const currentlyDeletingItems = state.contacts.currentlyDeletingItems;
   return currentlyDeletingItems.includes(id);
 };
 
-export const makeSelectCurrentlyDeleting = () => createSelector(
-  currentlyDeletingSelector,
-  status => status
-);
+export const makeSelectCurrentlyDeleting = () =>
+  createSelector(currentlyDeletingSelector, status => status);

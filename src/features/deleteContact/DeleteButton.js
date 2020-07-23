@@ -1,14 +1,10 @@
 import React from 'react';
 
-const DeleteButton = ({
-  isDeleting,
-  onClick,
-  children,
-}) => (
+const DeleteButton = ({ isDeleting, onClick, children }) => (
   <button
     className={`card-footer-item button is-danger is-light ${isDeleting &&
       'is-loading'}`}
-     onClick={onClick}
+    onClick={onClick}
   >
     {children}
   </button>

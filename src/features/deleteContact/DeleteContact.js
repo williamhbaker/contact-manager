@@ -6,17 +6,16 @@ import {
   makeSelectCurrentlyDeleting
 } from 'features/contactManager/contactManagerSlice';
 
-import DeleteButton from './DeleteButton'
+import DeleteButton from './DeleteButton';
 
 const DeleteContact = ({ children, contactInfo }) => {
   const dispatch = useDispatch();
 
-  const selectCurrentlyDeleting = useMemo(
-    makeSelectCurrentlyDeleting,
-    []
-  );
+  const selectCurrentlyDeleting = useMemo(makeSelectCurrentlyDeleting, []);
 
-  const isDeleting = useSelector(state => selectCurrentlyDeleting(state, contactInfo.id));
+  const isDeleting = useSelector(state =>
+    selectCurrentlyDeleting(state, contactInfo.id)
+  );
 
   const handleDeleteClick = id => {
     dispatch(deleteContact(id));

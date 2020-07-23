@@ -3,17 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   putContact,
-  selectAddOrUpdateInProgress,
+  selectAddOrUpdateInProgress
 } from 'features/contactManager/contactManagerSlice';
 
 import ModalWrapper from 'components/ModalWrapper';
 import EditButton from './EditButton';
 import Form from 'components/form';
 
-const ModalEdit = ({
-  children,
-  contactInfo
-}) => {
+const ModalEdit = ({ children, contactInfo }) => {
   const dispatch = useDispatch();
   const isUpdating = useSelector(selectAddOrUpdateInProgress);
 
@@ -51,11 +48,7 @@ const ModalEdit = ({
         </ModalWrapper>
       )}
 
-      <EditButton
-        onClick={openModal}
-      >
-        {children}
-      </EditButton>
+      <EditButton onClick={openModal}>{children}</EditButton>
     </>
   );
 };
