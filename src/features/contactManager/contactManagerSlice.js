@@ -128,14 +128,13 @@ const contactManagerSlice = createSlice({
       )
 });
 
-const {
+export const {
   receiveContacts,
   addContact,
   removeContact,
-  updateContact
+  updateContact,
+  resetInitialLoadState
 } = contactManagerSlice.actions;
-
-export const { resetInitialLoadState } = contactManagerSlice.actions;
 
 export default contactManagerSlice.reducer;
 
