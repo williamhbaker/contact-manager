@@ -1,5 +1,5 @@
 import React from 'react';
-import Field from './presentation/Field';
+import Field from './Field';
 
 const FieldList = ({ fields, onChange, onBlur, inProgress }) => (
   <>

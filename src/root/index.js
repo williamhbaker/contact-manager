@@ -9,7 +9,7 @@ import {
 
 import store from './store';
 
-import NavControl from 'components/navbar';
+import NavBar from 'components/navbar';
 import AddContact from 'features/contactManager/AddContact';
 import AllContacts from 'features/contactManager/AllContacts';
 import Settings from 'features/settings/Settings';
@@ -17,7 +17,7 @@ import Settings from 'features/settings/Settings';
 const Root = () => (
   <Provider store={store}>
     <Router>
-      <NavControl />
+      <NavBar />
 
       <Switch>
         <Route exact path="/settings">

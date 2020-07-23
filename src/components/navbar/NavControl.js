@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import NavBarLink from './NavBarLink';
 import NavBar from './NavBar';
 
-import paths from './paths';
+import paths from 'root/paths';
 
 const NavControl = () => {
   const [menuOpen, setMenuOpen] = useState(false);

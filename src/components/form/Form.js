@@ -2,37 +2,35 @@ import React from 'react';
 import { useState } from 'react';
 
 import FieldList from './FieldList';
-import FormButtons from './presentation/FormButtons';
-import FormContainer from './presentation/FormContainer';
+import FormButtons from './FormButtons';
+import FormContainer from './FormContainer';
 
-import contactDefinition from './contactDefinition';
+const Form = ({ data, inProgress, onSubmit, onCancel, fieldList }) => {
+  const getFieldByName = (fields, name) => {
+    const thisField = fields.find(f => f.name === name);
+    return { ...thisField };
+  };
+  
+  const blankFormState = () => {
+    return fieldList.map(field => {
+      return {
+        ...field,
+        value: '',
+        validity: {},
+        needsValidated: false
+      };
+    });
+  };
+  
+  const populatedFormState = data => {
+    return blankFormState().map(field => {
+      return {
+        ...field,
+        value: data[field.name]
+      };
+    });
+  };
 
-const getFieldByName = (fields, name) => {
-  const thisField = fields.find(f => f.name === name);
-  return { ...thisField };
-};
-
-const blankFormState = () => {
-  return contactDefinition.map(field => {
-    return {
-      ...field,
-      value: '',
-      validity: {},
-      needsValidated: false
-    };
-  });
-};
-
-const populatedFormState = data => {
-  return blankFormState().map(field => {
-    return {
-      ...field,
-      value: data[field.name]
-    };
-  });
-};
-
-const Form = ({ data, inProgress, onSubmit, onCancel }) => {
   const initialState = data ? populatedFormState(data) : blankFormState();
 
   const [fields, setFields] = useState(initialState);

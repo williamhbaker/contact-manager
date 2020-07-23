@@ -11,6 +11,7 @@ import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import Form from 'components/form';
+import contactDefinition from './contactDefinition';
 
 const AddContact = () => {
   const history = useHistory();
@@ -40,6 +41,7 @@ const AddContact = () => {
           inProgress={isAdding}
           onSubmit={handleAddContact}
           onCancel={redirectAfterSubmit}
+          fieldList={contactDefinition}
         />
       </Container>
     </Section>

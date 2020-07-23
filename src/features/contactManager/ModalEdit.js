@@ -6,6 +6,7 @@ import { putContact, selectAddOrUpdateInProgress } from './contactManagerSlice';
 import ModalWrapper from 'components/ModalWrapper';
 import EditButton from './EditButton';
 import Form from 'components/form';
+import contactDefinition from './contactDefinition';
 
 const ModalEdit = ({ children, contactInfo }) => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const ModalEdit = ({ children, contactInfo }) => {
         >
           <Form
             data={contactInfo}
+            fieldList={contactDefinition}
             inProgress={isUpdating}
             onSubmit={handleEditSubmit}
             onCancel={closeModal}
