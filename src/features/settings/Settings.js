@@ -37,7 +37,7 @@ const Settings = () => {
       Object.assign({}, field, { value: newVal })
     );
     setFields(newFields);
-    api.setDelay(Number(newVal));
+    thisName === 'delay' && api.setDelay(Number(newVal));
   };
 
   const handleResetClick = () => {
