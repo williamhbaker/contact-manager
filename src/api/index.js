@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // This is a mock in-memory implementation of something that would be implemented by calling a REST server.
 
-const delayTime = 1000;
+const delayTime = 1500;
 
 const db = {
   contacts: [
@@ -51,14 +51,22 @@ export const addContact = contactData => {
 export const updateContact = contactData => {
   console.log('server is updating contact');
   const idx = db.contacts.findIndex(c => c.id === contactData.id);
-  const data = Object.assign({}, db.contacts[idx], contactData);
+  const originalData = db.contacts[idx];
+
+  const changes = Object.keys(contactData).reduce((changeList, field) => {
+    if (contactData[field] !== originalData[field]) {
+      changeList[field] = contactData[field];
+    }
+    return changeList;
+  }, {});
+
   return delay(delayTime).then(() => {
     db.contacts = [
       ...db.contacts.slice(0, idx),
-      data,
+      Object.assign({}, originalData, changes),
       ...db.contacts.slice(idx + 1)
     ];
-    return data;
+    return { id: contactData.id, ...changes };
   });
 };
 

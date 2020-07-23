@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import {
-  putContact,
+  postContact,
   selectAddOrUpdateInProgress
 } from 'features/contactManager/contactManagerSlice.js';
 
@@ -26,7 +26,7 @@ const AddContact = () => {
   });
 
   const handleAddContact = formData => {
-    dispatch(putContact(formData));
+    dispatch(postContact(formData));
     setSubmitted(true);
   };
 

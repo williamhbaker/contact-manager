@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchContacts,
   selectAll,
-  selectAddOrUpdateInProgress,
+  selectFetchInProgress,
 } from 'features/contactManager/contactManagerSlice';
 
 import ContactCard from './ContactCard';
@@ -17,7 +17,7 @@ import InProgress from 'components/InProgress';
 function AllContacts() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectAll);
-  const isFetching = useSelector(selectAddOrUpdateInProgress);
+  const isFetching = useSelector(selectFetchInProgress);
 
   useEffect(() => {
     dispatch(fetchContacts());

@@ -24,8 +24,8 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-export const putContact = createAsyncThunk(
-  'contacts/addContact',
+export const postContact = createAsyncThunk(
+  'contacts/postContact',
   async (data, { dispatch }) => {
     const result = await api.addContact(data);
     if (result) dispatch(addContact(result));
@@ -48,6 +48,18 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
+export const putContact = createAsyncThunk(
+  'contacts/putContact',
+  async (data, { dispatch }) => {
+    const result = await api.updateContact(data);
+    if (result) dispatch(updateContact({
+      id: result.id,
+      changes: result,
+    }));
+    return result;
+  }
+);
+
 // slice
 
 const contactsAdapter = createEntityAdapter({
@@ -60,37 +72,33 @@ const contactManagerSlice = createSlice({
   initialState: contactsAdapter.getInitialState({
     initialLoadComplete: false,
     addOrUpdateInProgress: false,
+    fetchInProgress: false,
     currentlyDeletingItems: [],
   }),
   reducers: {
     receiveContacts: contactsAdapter.setAll,
     addContact: contactsAdapter.addOne,
     removeContact: contactsAdapter.removeOne,
-    updateContact(state, action) {
-      const thisContact = state.all.find(
-        contact => contact.id === action.payload.id
-      );
-      Object.assign(thisContact, action.payload);
-    },
+    updateContact: contactsAdapter.updateOne,
   },
   extraReducers: {
     [fetchContacts.pending]: (state, action) => {
-      state.addOrUpdateInProgress = true;
+      state.fetchInProgress = true;
     },
     [fetchContacts.fulfilled]: (state, action) => {
-      state.addOrUpdateInProgress = false;
+      state.fetchInProgress = false;
       state.initialLoadComplete = true;
     },
     [fetchContacts.rejected]: (state, action) => {
       console.log('fetch contacts rejected');
     },
-    [putContact.pending]: (state, action) => {
+    [postContact.pending]: (state, action) => {
       state.addOrUpdateInProgress = true;
     },
-    [putContact.fulfilled]: (state, action) => {
+    [postContact.fulfilled]: (state, action) => {
       state.addOrUpdateInProgress = false;
     },
-    [putContact.rejected]: (state, action) => {
+    [postContact.rejected]: (state, action) => {
       console.log('add contact rejected');
     },
     [deleteContact.pending]: (state, action) => {
@@ -102,11 +110,20 @@ const contactManagerSlice = createSlice({
     },
     [deleteContact.rejected]: (state, action) => {
       console.log('add contact rejected');
+    },
+    [putContact.pending]: (state, action) => {
+      state.addOrUpdateInProgress = true;
+    },
+    [putContact.fulfilled]: (state, action) => {
+      state.addOrUpdateInProgress = false;
+    },
+    [putContact.rejected]: (state, action) => {
+      console.log('update contact rejected');
     }
   }
 });
 
-export const {
+const {
   receiveContacts,
   addContact,
   removeContact,
@@ -122,18 +139,14 @@ export const {
   selectById
 } = contactsAdapter.getSelectors(state => state.contacts);
 
-const loadSelector = state => state.contacts.initialLoadComplete;
-const inProgressSelector = state => state.contacts.addOrUpdateInProgress;
+export const selectInitialLoadComplete = state => 
+  state.contacts.initialLoadComplete;
 
-export const selectInitialLoadComplete = createSelector(
-  loadSelector,
-  status => status
-);
+export const selectAddOrUpdateInProgress = state => 
+  state.contacts.addOrUpdateInProgress;
 
-export const selectAddOrUpdateInProgress = createSelector(
-  inProgressSelector,
-  status => status
-);
+export const selectFetchInProgress = state => 
+  state.contacts.fetchInProgress;
 
 const currentlyDeletingSelector = (state, id) => {
   const currentlyDeletingItems = state.contacts.currentlyDeletingItems;
