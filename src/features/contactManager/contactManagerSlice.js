@@ -39,6 +39,15 @@ export const putContact = createAsyncThunk(
   }
 );
 
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id, { dispatch }) => {
+    const result = await api.deleteContact(id);
+    if (result) dispatch(removeContact(result));
+    return result;
+  }
+);
+
 // slice
 
 const contactsAdapter = createEntityAdapter({
@@ -56,12 +65,7 @@ const contactManagerSlice = createSlice({
   reducers: {
     receiveContacts: contactsAdapter.setAll,
     addContact: contactsAdapter.addOne,
-    deleteContact(state, action) {
-      const idx = state.all.findIndex(
-        contact => contact.id === action.payload.id
-      );
-      state.all.splice(idx, 1);
-    },
+    removeContact: contactsAdapter.removeOne,
     updateContact(state, action) {
       const thisContact = state.all.find(
         contact => contact.id === action.payload.id
@@ -88,6 +92,16 @@ const contactManagerSlice = createSlice({
     },
     [putContact.rejected]: (state, action) => {
       console.log('add contact rejected');
+    },
+    [deleteContact.pending]: (state, action) => {
+      state.currentlyDeletingItems.push(action.meta.arg);
+    },
+    [deleteContact.fulfilled]: (state, action) => {
+      const idx = state.currentlyDeletingItems.findIndex(i => i === action.meta.arg);
+      state.currentlyDeletingItems.splice(idx, 1);
+    },
+    [deleteContact.rejected]: (state, action) => {
+      console.log('add contact rejected');
     }
   }
 });
@@ -95,7 +109,7 @@ const contactManagerSlice = createSlice({
 export const {
   receiveContacts,
   addContact,
-  deleteContact,
+  removeContact,
   updateContact,
 } = contactManagerSlice.actions;
 
@@ -108,7 +122,6 @@ export const {
   selectById
 } = contactsAdapter.getSelectors(state => state.contacts);
 
-
 const loadSelector = state => state.contacts.initialLoadComplete;
 const inProgressSelector = state => state.contacts.addOrUpdateInProgress;
 
@@ -119,5 +132,15 @@ export const selectInitialLoadComplete = createSelector(
 
 export const selectAddOrUpdateInProgress = createSelector(
   inProgressSelector,
+  status => status
+);
+
+const currentlyDeletingSelector = (state, id) => {
+  const currentlyDeletingItems = state.contacts.currentlyDeletingItems;
+  return currentlyDeletingItems.includes(id);
+};
+
+export const makeSelectCurrentlyDeleting = () => createSelector(
+  currentlyDeletingSelector,
   status => status
 );

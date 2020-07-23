@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // This is a mock in-memory implementation of something that would be implemented by calling a REST server.
 
-const delayTime = 2000;
+const delayTime = 1000;
 
 const db = {
   contacts: [
