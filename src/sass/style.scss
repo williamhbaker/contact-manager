@@ -1,25 +1,3 @@
 @charset "utf-8";
 
-// @import "../../node_modules/bulma/bulma.sass";
-
-@import '../../node_modules/bulma/sass/utilities/_all.sass';
-@import '../../node_modules/bulma/sass/base/_all.sass';
-
-@import '../../node_modules/bulma/sass/helpers/spacing.sass';
-
-@import '../../node_modules/bulma/sass/elements/button.sass';
-@import '../../node_modules/bulma/sass/elements/icon.sass';
-@import '../../node_modules/bulma/sass/elements/container.sass';
-@import '../../node_modules/bulma/sass/elements/title.sass';
-@import '../../node_modules/bulma/sass/elements/other.sass';
-@import '../../node_modules/bulma/sass/elements/progress.sass';
-
-@import '../../node_modules/bulma/sass/layout/section.sass';
-
-@import '../../node_modules/bulma/sass/form/shared.sass';
-@import '../../node_modules/bulma/sass/form/tools.sass';
-@import '../../node_modules/bulma/sass/form/input-textarea.sass';
-
-@import '../../node_modules/bulma/sass/components/card.sass';
-@import '../../node_modules/bulma/sass/components/navbar.sass';
-@import '../../node_modules/bulma/sass/components/modal.sass';
+@import '../../node_modules/bulmaswatch/lux/bulmaswatch.scss'
