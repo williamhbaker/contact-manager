@@ -99,17 +99,8 @@ const contactManagerSlice = createSlice({
         state.fetchInProgress = false;
         state.initialLoadComplete = true;
       })
-      .addCase(fetchContacts.rejected, (state, action) => {
-        console.log('fetch contacts rejected');
-      })
       .addCase(postContact.pending, (state, action) => {
         state.addOrUpdateInProgress = true;
-      })
-      .addCase(postContact.fulfilled, (state, action) => {
-        state.addOrUpdateInProgress = false;
-      })
-      .addCase(postContact.rejected, (state, action) => {
-        console.log('add contact rejected');
       })
       .addCase(deleteContact.pending, (state, action) => {
         state.currentlyDeletingItems.push(action.meta.arg);
@@ -120,21 +111,20 @@ const contactManagerSlice = createSlice({
         );
         state.currentlyDeletingItems.splice(idx, 1);
       })
-      .addCase(deleteContact.rejected, (state, action) => {
-        console.log('add contact rejected');
-      })
       .addCase(putContact.pending, (state, action) => {
         state.addOrUpdateInProgress = true;
       })
-      .addCase(putContact.fulfilled, (state, action) => {
-        state.addOrUpdateInProgress = false;
-      })
-      .addCase(putContact.rejected, (state, action) => {
-        console.log('update contact rejected');
-      })
+      .addMatcher(
+        action => action.type.endsWith('/fulfilled'),
+        (state, action) => {
+          state.addOrUpdateInProgress = false;
+        }
+      )
       .addMatcher(
         action => action.type.endsWith('/rejected'),
-        () => console.log('server rejected request')
+        (state, action) => {
+          console.log('server rejected request:', action.type);
+        }
       )
 });
 
