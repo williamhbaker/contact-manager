@@ -16,7 +16,7 @@ const DeleteContact = ({ children, contactInfo }) => {
     <button
       className={`card-footer-item button is-danger is-light ${isRunning &&
         'is-loading'}`}
-      onClick={() => handleDeleteClick(contactInfo)}
+      onClick={() => handleDeleteClick(contactInfo.id)}
     >
       {children}
     </button>

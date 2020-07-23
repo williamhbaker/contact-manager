@@ -8,8 +8,8 @@ import { deleteContact as deleteContactState } from 'features/contactManager/con
 
 export const deleteContact = createAsyncThunk(
   'deleteContact/deleteContact',
-  async (data, { dispatch }) => {
-    const result = await api.deleteContact(data);
+  async (id, { dispatch }) => {
+    const result = await api.deleteContact(id);
     if (result) dispatch(deleteContactState(result));
     return result;
   }
@@ -28,10 +28,10 @@ const deleteContactSlice = createSlice({
   },
   extraReducers: {
     [deleteContact.pending]: (state, action) => {
-      state[action.meta.arg.id] = 'running';
+      state[action.meta.arg] = 'running';
     },
     [deleteContact.fulfilled]: (state, action) => {
-      state[action.meta.arg.id] = 'done';
+      state[action.meta.arg] = 'done';
     },
     [deleteContact.rejected]: (state, action) => {
       console.log('delete contact rejected');

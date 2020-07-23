@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 // This is a mock in-memory implementation of something that would be implemented by calling a REST server.
 
+const delayTime = 2000;
+
 const db = {
   contacts: [
     {
@@ -32,7 +34,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export const fetchContacts = () => {
   console.log('server is fetching contacts');
-  return delay(2000).then(() => {
+  return delay(delayTime).then(() => {
     return db.contacts;
   });
 };
@@ -40,7 +42,7 @@ export const fetchContacts = () => {
 export const addContact = contactData => {
   console.log('server is adding contact');
   const data = { id: uuidv4(), ...contactData };
-  return delay(2000).then(() => {
+  return delay(delayTime).then(() => {
     db.contacts = [...db.contacts, data];
     return data;
   });
@@ -50,7 +52,7 @@ export const updateContact = contactData => {
   console.log('server is updating contact');
   const idx = db.contacts.findIndex(c => c.id === contactData.id);
   const data = Object.assign({}, db.contacts[idx], contactData);
-  return delay(2000).then(() => {
+  return delay(delayTime).then(() => {
     db.contacts = [
       ...db.contacts.slice(0, idx),
       data,
@@ -60,11 +62,11 @@ export const updateContact = contactData => {
   });
 };
 
-export const deleteContact = contactData => {
+export const deleteContact = id => {
   console.log('server is deleting contact');
-  const idx = db.contacts.findIndex(c => c.id === contactData.id);
-  return delay(2000).then(() => {
+  const idx = db.contacts.findIndex(c => c.id === id);
+  return delay(delayTime).then(() => {
     db.contacts = [...db.contacts.slice(0, idx), ...db.contacts.slice(idx + 1)];
-    return contactData;
+    return id;
   });
 };
